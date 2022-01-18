@@ -27,6 +27,14 @@ Para executar os testes utilize o seguinte comando
 $ docker-compose run api python -m pytest src
 ```
 
+### Linter
+
+Para executar o linter utilize o seguinte comando
+
+```sh
+$ docker-compose run api python -m flake8
+```
+
 ## Rotas
 
 > **Versão**: 1.0.0
