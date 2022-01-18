@@ -9,3 +9,6 @@ services:
     ports:
       - ${APP_PORT}:80
 
+networks:
+  default:
+    driver: bridge

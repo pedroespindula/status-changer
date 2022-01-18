@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  k6:
+    build: './'
+    restart: unless-stopped
+    environment:
+      HOST: $API_HOST
+
+
+networks:
+  default:
+    external: true
+    name: api_default
