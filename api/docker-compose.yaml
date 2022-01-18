@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  api:
+    build: './'
+    restart: unless-stopped
+    volumes:
+      - ./:/app:cached
+    ports:
+      - ${APP_PORT}:80
+
