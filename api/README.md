@@ -2,7 +2,9 @@
 
 A API se trata de uma simples API REST feita em flask que apenas reproduz o `status_code` que foi mandado para ela através do corpo da requisição.
 
-## Executando em desenvolvimento
+## Executando
+
+### Ambiente de desenvolvimento
 
 1. Copie as variaveis de ambiente:
 
@@ -15,6 +17,14 @@ $ cp .env.example .env
 
 ```sh
 $ docker-compose up
+```
+
+### Testes
+
+Para executar os testes utilize o seguinte comando
+
+```sh
+$ docker-compose run api python -m pytest src
 ```
 
 ## Rotas
