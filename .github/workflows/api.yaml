@@ -87,6 +87,10 @@ jobs:
       - build
       - terraform
 
+    defaults:
+      run:
+        working-directory: api/
+
     env:
       ECR_REPOSITORY: status_changer
       ECS_SERVICE: status_changer
