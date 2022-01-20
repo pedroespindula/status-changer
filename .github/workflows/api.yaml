@@ -126,18 +126,13 @@ jobs:
 
     - name: Download task definition from aws
       run: |
-        aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} | jq .taskDefinition > ./${{ env.ECS_TASK_DEFINITION }}
-
-    - name: list files
-      run: |
-        ls
-        cat status_changer
+        aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} | jq .taskDefinition > ${{ env.ECS_TASK_DEFINITION }}
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: ./${{ env.ECS_TASK_DEFINITION }}
+        task-definition: api/${{ env.ECS_TASK_DEFINITION }}
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ steps.build-image.outputs.image }}
 
