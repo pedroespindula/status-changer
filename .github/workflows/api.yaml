@@ -14,15 +14,6 @@ on:
       - api/**
       - .github/workflows/api.yaml
 
-env:
-  AWS_REGION: us-east-1
-  ECR_REPOSITORY: status_changer
-  ECS_SERVICE: status_changer
-  ECS_CLUSTER: status_changer
-  ECS_TASK_DEFINITION: status_changer
-
-  CONTAINER_NAME: status_changer
-
 jobs:
   build:
 
@@ -72,7 +63,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: us-east-1
 
     - name: Terraform Init
       run: terraform init
@@ -96,6 +87,13 @@ jobs:
       - build
       - terraform
 
+    env:
+      ECR_REPOSITORY: status_changer
+      ECS_SERVICE: status_changer
+      ECS_CLUSTER: status_changer
+      ECS_TASK_DEFINITION: status_changer
+
+      CONTAINER_NAME: status_changer
 
     steps:
     - name: Checkout
@@ -106,7 +104,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: us-east-1
 
     - name: Login to Amazon ECR
       id: login-ecr
