@@ -6,7 +6,7 @@ terraform {
   backend "s3" {
     bucket = "pagarme-infra-tfstate"
     key    = "pagarme-infra-tflock"
-    region = local.aws_region
+    region = "us-east-1"
   }
 }
 
