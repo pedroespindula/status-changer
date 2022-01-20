@@ -40,12 +40,15 @@ jobs:
       run: pytest
 
   terraform:
-    name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
 
+    needs:
+      - build
+
     defaults:
       run:
+        working-directory: api/terraform/
         shell: bash
 
     steps:
@@ -69,9 +72,14 @@ jobs:
       run: terraform apply -auto-approve
 
   deploy:
-    name: Deploy
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: production
+
+    needs:
+      - build
+      - terraform
+
     env:
       AWS_REGION: us-east-1
       ECR_REPOSITORY: status_changer
