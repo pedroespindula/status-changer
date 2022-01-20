@@ -14,6 +14,15 @@ on:
       - api/**
       - .github/workflows/api.yaml
 
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: status_changer
+  ECS_SERVICE: status_changer
+  ECS_CLUSTER: status_changer
+  ECS_TASK_DEFINITION: status_changer
+
+  CONTAINER_NAME: status_changer
+
 jobs:
   build:
 
@@ -87,14 +96,6 @@ jobs:
       - build
       - terraform
 
-    env:
-      AWS_REGION: us-east-1
-      ECR_REPOSITORY: status_changer
-      ECS_SERVICE: status_changer
-      ECS_CLUSTER: status_changer
-      ECS_TASK_DEFINITION: status_changer
-
-      CONTAINER_NAME: status_changer
 
     steps:
     - name: Checkout
