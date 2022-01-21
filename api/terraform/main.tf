@@ -1,10 +1,10 @@
 terraform {
   backend "s3" {
-    bucket = "pagarme-challenge-tfstate"
-    key    = "us-east-1/iam-user/terraform.tfstate"
+    bucket = "pagarme-challenge-infra-tfstate"
+    key    = "us-east-1/status-changer/terraform.tfstate"
     region = "us-east-1"
 
-    dynamodb_table = "pagarme-challenge-tflock"
+    dynamodb_table = "pagarme-challenge-infra-tflock"
     encrypt        = true
   }
 }
