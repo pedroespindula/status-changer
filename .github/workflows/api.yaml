@@ -92,12 +92,12 @@ jobs:
         working-directory: api/
 
     env:
-      ECR_REPOSITORY: status_changer
-      ECS_SERVICE: status_changer
-      ECS_CLUSTER: status_changer
-      ECS_TASK_DEFINITION: status_changer
+      ECR_REPOSITORY: status-changer
+      ECS_SERVICE: status-changer-service
+      ECS_CLUSTER: status-changer-cluster
+      ECS_TASK_DEFINITION: status-changer-task-definition
 
-      CONTAINER_NAME: status_changer
+      CONTAINER_NAME: status-changer
 
     steps:
     - name: Checkout

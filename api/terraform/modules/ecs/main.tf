@@ -37,7 +37,7 @@ resource "aws_ecs_cluster" "this" {
 }
 
 resource "aws_ecs_task_definition" "this" {
-  family                   = "${var.name}-task-definition-family"
+  family                   = "${var.name}-task-definition"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   memory                   = var.memory
