@@ -31,7 +31,6 @@ variable "aws_tags" {
     Team        = string
     Squad       = string
     Service     = string
-    User        = string
     Environment = string
   })
 }
