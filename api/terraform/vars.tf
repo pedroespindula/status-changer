@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region that will be used to deploy the infrastructure"
   type        = string
-  default     = "us-west-2"
+  default     = "us-east-1"
 
   validation {
     condition = contains([
