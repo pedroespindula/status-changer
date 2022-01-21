@@ -31,3 +31,7 @@ module "ecs" {
 
   aws_tags = var.aws_tags
 }
+
+output "elb_url" {
+  value = module.ecs.elb_url
+}
