@@ -98,8 +98,14 @@ $ cd ../../../
 
 ### Cluster ECS
 
-Dado que já configuramos nosso Github e nosso Backend, podemos tanto fazer o push do estado atual do nosso repositório, como também podemos fazer todo o processo de deploy manual. Como somos preguiçosos, vamos apenas fazer o push do repositório.
+Dado que já configuramos nosso Github e nosso Backend, podemos tanto fazer o push do estado atual do nosso repositório, como também podemos fazer todo o processo de deploy manual. Como somos preguiçosos, vamos apenas fazer o push do repositório e ativar o workflow.
+
+1. Faça o push do repositório:
 
 ```bash
 $ git push origin main
 ```
+
+2. Ative o workflow manualmente na interface do github.
+
+> Em caso de dúvidas, siga a seguinte [documentação](https://docs.github.com/pt/actions/managing-workflow-runs/manually-running-a-workflow)
