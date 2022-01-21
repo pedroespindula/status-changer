@@ -1,7 +1,3 @@
-locals {
-  aws_region = "us-east-1"
-}
-
 terraform {
   backend "s3" {
     bucket = "pagarme-infra-tfstate"
@@ -11,5 +7,22 @@ terraform {
 }
 
 provider "aws" {
-  region = local.aws_region
+  region = "us-east-1"
+}
+
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnet_ids" "default" {
+  vpc_id = data.aws_vpc.default.id
+}
+
+module "ecs" {
+  source = "./modules/ecs"
+
+  name = "status-changer"
+
+  vpc_id     = data.aws_vpc.default.id
+  subnet_ids = data.aws_subnet_ids.default.ids
 }
