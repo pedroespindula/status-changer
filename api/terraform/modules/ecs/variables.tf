@@ -23,3 +23,16 @@ variable "subnet_ids" {
   }
 }
 
+variable "aws_tags" {
+  description = "AWS tags that will be shared bettween the deployed resources"
+  type = object({
+    Owner       = string
+    Product     = string
+    Team        = string
+    Squad       = string
+    Service     = string
+    User        = string
+    Environment = string
+  })
+}
+

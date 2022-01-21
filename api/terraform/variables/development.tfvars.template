@@ -1,0 +1,12 @@
+aws_region = "us-east-1"
+
+aws_tags = {
+  Owner       = "pagarme"
+  Product     = "status_changer"
+  Team        = "sre"
+  Squad       = "infraops"
+  Service     = "status_changer"
+  User        = "FILL USER HERE"
+  Environment = "production"
+}
+

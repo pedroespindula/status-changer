@@ -7,7 +7,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 data "aws_vpc" "default" {
@@ -25,4 +25,6 @@ module "ecs" {
 
   vpc_id     = data.aws_vpc.default.id
   subnet_ids = data.aws_subnet_ids.default.ids
+
+  aws_tags = var.aws_tags
 }

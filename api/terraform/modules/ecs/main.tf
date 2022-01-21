@@ -5,6 +5,10 @@ resource "aws_ecr_repository" "this" {
   image_scanning_configuration {
     scan_on_push = true
   }
+
+  tags = merge(var.aws_tags, {
+    Name = var.name
+  })
 }
 
 resource "aws_ecr_repository_policy" "this" {
@@ -34,6 +38,10 @@ resource "aws_ecr_repository_policy" "this" {
 
 resource "aws_ecs_cluster" "this" {
   name = "${var.name}-cluster"
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-cluster"
+  })
 }
 
 resource "aws_ecs_task_definition" "this" {
@@ -58,11 +66,19 @@ resource "aws_ecs_task_definition" "this" {
       ]
     }
   ])
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-task-definition"
+  })
 }
 
 resource "aws_iam_role" "this" {
   name               = "${var.name}-iam-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy.json
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-iam-role"
+  })
 }
 
 data "aws_iam_policy_document" "assume_role_policy" {
@@ -100,6 +116,10 @@ resource "aws_ecs_service" "this" {
   }
 
   desired_count = 1
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-service"
+  })
 }
 
 resource "aws_alb" "this" {
@@ -107,9 +127,18 @@ resource "aws_alb" "this" {
   load_balancer_type = "application"
   subnets            = var.subnet_ids
   security_groups    = [aws_security_group.this.id]
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-load-balancer"
+  })
 }
 
 resource "aws_security_group" "this" {
+  name        = "${var.name}-security-group"
+  description = "Allow HTTP inbound traffic"
+  vpc_id      = var.vpc_id
+
+
   ingress {
     from_port   = 80
     to_port     = 80
@@ -123,6 +152,10 @@ resource "aws_security_group" "this" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-security-group"
+  })
 }
 
 resource "aws_lb_target_group" "this" {
@@ -135,6 +168,10 @@ resource "aws_lb_target_group" "this" {
     matcher = "200"
     path    = "/"
   }
+
+  tags = merge(var.aws_tags, {
+    Name = "${var.name}-target-group"
+  })
 }
 
 resource "aws_lb_listener" "this" {
