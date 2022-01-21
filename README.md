@@ -109,3 +109,5 @@ $ git push origin main
 2. Ative o workflow manualmente na interface do github.
 
 > Em caso de dúvidas, siga a seguinte [documentação](https://docs.github.com/pt/actions/managing-workflow-runs/manually-running-a-workflow)
+
+Pronto, sua infraestrutura está pronta!
