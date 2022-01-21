@@ -111,3 +111,17 @@ $ git push origin main
 > Em caso de dúvidas, siga a seguinte [documentação](https://docs.github.com/pt/actions/managing-workflow-runs/manually-running-a-workflow)
 
 Pronto, sua infraestrutura está pronta!
+
+### Fazendo requisições
+
+Para fazer requisições para o cluster recem criado, você precisará da URL do ELB que expõe o serviço do RDS. Essa URL é mostrada no output do terraform. Você tem duas opções, executar o comando `terraform output` manualmente, ou ir no workflow recem executado e ir na etapa de Terraform apply para encontrar a URL. Nesse guia optaremos pela segunda opção.
+
+1. Encontre a URL do elb no workflow recem executado no job de `terraform` ao final da etapa de `Terraform Apply`
+
+2. Faça uma requisição para o elb com o curl
+
+```
+$ curl <ELB_URL>
+```
+
+> Substitua o placeholder de <ELB_URL> pela URL que você encontrou no passo anterior.
