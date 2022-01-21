@@ -6,7 +6,6 @@ aws_tags = {
   Team        = "sre"
   Squad       = "infraops"
   Service     = "status_changer"
-  User        = "FILL USER HERE"
   Environment = "production"
 }
 

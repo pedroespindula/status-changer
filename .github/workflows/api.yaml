@@ -65,6 +65,9 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+    - name: Copy terraform vars
+      run: cp variables/production.tfvars.template terraform.tfvars
+
     - name: Terraform Init
       run: terraform init
 
