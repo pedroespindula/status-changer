@@ -10,4 +10,4 @@ RUN pip install -r test_requirements.txt
 
 COPY . .
 
-CMD python src/server.py
+CMD ["ddtrace-run", "python", "./src/server.py"]
